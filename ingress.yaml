@@ -5,7 +5,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/server-snippet: |
-      location /api {
+      location /api/books {
         if ($request_method = GET) {
           rewrite ^/api(.*)$ /get$1 break;
         }
