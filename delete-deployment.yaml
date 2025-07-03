@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: delete-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: delete-service
+  template:
+    metadata:
+      labels:
+        app: delete-service
+    spec:
+      containers:
+        - name: delete-service
+          image: mostafahtm/delete_service:latest
+          imagePullPolicy: "Always"
+          env:
+            - name: TZ
+              value: Europe/Berlin
+            - name: MONGO_URI
+              value: "mongodb://bookuser:bookpass@mongo:27017/exercise-4?authSource=exercise-4"
+          ports:
+            - containerPort: 3030
