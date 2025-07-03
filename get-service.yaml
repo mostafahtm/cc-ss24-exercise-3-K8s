@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: get-service-svc
+spec:
+  type: ClusterIP
+  ports:
+    - name: get-endpoint
+      port: 3030
+      targetPort: 3030
+      protocol: TCP
+  selector:
+    app: get-service
