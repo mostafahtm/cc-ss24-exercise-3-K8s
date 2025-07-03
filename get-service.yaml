@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: get-service-svc
+  name: get-service-service
 spec:
   type: ClusterIP
   ports:
