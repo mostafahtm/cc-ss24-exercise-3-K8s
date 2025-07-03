@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: render-service-svc
+spec:
+  type: ClusterIP
+  ports:
+    - name: render-endpoint
+      port: 3030
+      targetPort: 3030
+      protocol: TCP
+  selector:
+    app: render-service
