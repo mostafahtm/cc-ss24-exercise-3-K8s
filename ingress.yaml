@@ -7,16 +7,16 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
       location /api/books {
         if ($request_method = GET) {
-          rewrite ^/api(.*)$ /get$1 break;
+          rewrite ^/api/books(.*)$ /get$1 break;
         }
         if ($request_method = POST) {
-          rewrite ^/api(.*)$ /post$1 break;
+          rewrite ^/api/books(.*)$ /post$1 break;
         }
         if ($request_method = PUT) {
-          rewrite ^/api(.*)$ /put$1 break;
+          rewrite ^/api/books(.*)$ /put$1 break;
         }
         if ($request_method = DELETE) {
-          rewrite ^/api(.*)$ /delete$1 break;
+          rewrite ^/api/books(.*)$ /delete$1 break;
         }
       }
 spec:
