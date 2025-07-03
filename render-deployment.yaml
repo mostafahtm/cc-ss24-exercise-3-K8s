@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: render-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: render-service
+  template:
+    metadata:
+      labels:
+        app: render-service
+    spec:
+      containers:
+        - name: render-service
+          image: mostafahtm/render_service:latest
+          imagePullPolicy: "Always"
+          env:
+            - name: TZ
+              value: Europe/Berlin
+            - name: MONGO_URI
+              value: "mongodb://bookuser:bookpass@mongo:27017/exercise-4?authSource=exercise-4"
+          ports:
+            - containerPort: 3030
