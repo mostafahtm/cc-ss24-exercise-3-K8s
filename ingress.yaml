@@ -27,7 +27,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: get-service
+                name: get-service-service
                 port:
                   number: 3030
 
@@ -35,7 +35,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: post-service
+                name: post-service-service
                 port:
                   number: 3030
 
@@ -43,7 +43,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: put-service
+                name: put-service-service
                 port:
                   number: 3030
 
@@ -51,7 +51,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: delete-service
+                name: delete-service-service
                 port:
                   number: 3030
 
@@ -59,6 +59,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: render-service
+                name: render-service-service
                 port:
                   number: 3030
