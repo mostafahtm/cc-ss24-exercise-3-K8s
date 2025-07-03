@@ -21,8 +21,7 @@ metadata:
       }
 spec:
   rules:
-    - host: 74.178.90.59
-      http:
+    - http:
         paths:
           - path: /get
             pathType: Prefix
