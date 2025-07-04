@@ -20,40 +20,44 @@ metadata:
       }
 spec:
   rules:
-    http:
-      paths:
-      - path: /_read
-        pathType: Prefix
-        backend:
-          service:
-            name: get-service-service
-            port:
-              number: 3030
-      - path: /_write
-        pathType: Prefix
-        backend:
-          service:
-            name: post-service-service
-            port:
-              number: 3030
-      - path: /_write
-        pathType: Prefix
-        backend:
-          service:
-            name: put-service-service
-            port:
-              number: 3030
-      - path: /_write
-        pathType: Prefix
-        backend:
-          service:
-            name: delete-service-service
-            port:
-              number: 3030
-      - path: /render
-        pathType: Prefix
-        backend:
-          service:
-            name: render-service-service
-            port:
-              number: 3030
+    - http:
+        paths:
+          - path: /_read
+            pathType: Prefix
+            backend:
+              service:
+                name: get-service-service
+                port:
+                  number: 3030
+
+          - path: /_write-post
+            pathType: Prefix
+            backend:
+              service:
+                name: post-service-service
+                port:
+                  number: 3030
+
+          - path: /_write-put
+            pathType: Prefix
+            backend:
+              service:
+                name: put-service-service
+                port:
+                  number: 3030
+
+          - path: /_write-delete
+            pathType: Prefix
+            backend:
+              service:
+                name: delete-service-service
+                port:
+                  number: 3030
+
+          - path: /render
+            pathType: Prefix
+            backend:
+              service:
+                name: render-service-service
+                port:
+                  number: 3030
