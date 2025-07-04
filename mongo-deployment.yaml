@@ -22,3 +22,5 @@ spec:
               value: bookuser
             - name: MONGO_INITDB_ROOT_PASSWORD
               value: bookpass
+            - name: MONGO_INITDB_DATABASE
+              value: exercise-4
