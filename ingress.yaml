@@ -4,18 +4,18 @@ metadata:
   name: app-method-routing
   annotations:
     nginx.ingress.kubernetes.io/server-snippet: |
-      location /api/books {
+      location /api {
         if ($request_method = GET) {
-          rewrite ^/api/books(.*)$ /get$1 break;
+          rewrite ^/api(.*)$ /get$1 break;
         }
         if ($request_method = POST) {
-          rewrite ^/api/books(.*)$ /post$1 break;
+          rewrite ^/api(.*)$ /post$1 break;
         }
         if ($request_method = PUT) {
-          rewrite ^/api/books(.*)$ /put$1 break;
+          rewrite ^/api(.*)$ /put$1 break;
         }
         if ($request_method = DELETE) {
-          rewrite ^/api/books(.*)$ /delete$1 break;
+          rewrite ^/api(.*)$ /delete$1 break;
         }
       }
 spec:
