@@ -3,26 +3,58 @@ kind: Ingress
 metadata:
   name: app-method-routing
   annotations:
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/server-snippet: |
       location /api/books {
         if ($request_method = GET) {
-          proxy_pass http://get-service-service:3030$request_uri;
+          rewrite ^/api/books(.*)$ /get$1 break;
         }
         if ($request_method = POST) {
-          proxy_pass http://post-service-service:3030$request_uri;
+          rewrite ^/api/books(.*)$ /post$1 break;
         }
         if ($request_method = PUT) {
-          proxy_pass http://put-service-service:3030$request_uri;
+          rewrite ^/api/books(.*)$ /put$1 break;
         }
         if ($request_method = DELETE) {
-          proxy_pass http://delete-service-service:3030$request_uri;
+          rewrite ^/api/books(.*)$ /delete$1 break;
         }
-        proxy_set_header Host $host;
       }
 spec:
   rules:
     - http:
         paths:
+          - path: /get
+            pathType: Prefix
+            backend:
+              service:
+                name: get-service-service
+                port:
+                  number: 3030
+
+          - path: /post
+            pathType: Prefix
+            backend:
+              service:
+                name: post-service-service
+                port:
+                  number: 3030
+
+          - path: /put
+            pathType: Prefix
+            backend:
+              service:
+                name: put-service-service
+                port:
+                  number: 3030
+
+          - path: /delete
+            pathType: Prefix
+            backend:
+              service:
+                name: delete-service-service
+                port:
+                  number: 3030
+
           - path: /
             pathType: Prefix
             backend:
