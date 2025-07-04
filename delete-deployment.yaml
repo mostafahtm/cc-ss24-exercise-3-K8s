@@ -20,6 +20,6 @@ spec:
             - name: TZ
               value: Europe/Berlin
             - name: DATABASE_URI
-              value: "mongodb://bookuser:bookpass@mongo:27017/exercise-4?authSource=exercise-4"
+              value: "mongodb://bookuser:bookpass@mongo:27017/exercise-4?authSource=admin"
           ports:
             - containerPort: 3030
