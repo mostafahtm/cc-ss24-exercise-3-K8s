@@ -21,7 +21,7 @@ metadata:
       }
 spec:
   rules:
-    - host: 74.178.90.59
+    - host: 74.178.90.59.nip.io
       http:
         paths:
           - path: /get
