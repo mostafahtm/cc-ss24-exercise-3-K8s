@@ -4,56 +4,52 @@ metadata:
   name: app-method-routing
   annotations:
     kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      internal;
+      rewrite ^ $original_uri break;
     nginx.ingress.kubernetes.io/server-snippet: |
-      location /api/books {
+      location /api {
         if ($request_method = GET) {
-          rewrite ^/api/books(.*)$ /get$1 break;
+          set $target_destination '/_read';
         }
-        if ($request_method = POST) {
-          rewrite ^/api/books(.*)$ /post$1 break;
+        if ($request_method != GET) {
+          set $target_destination '/_write';
         }
-        if ($request_method = PUT) {
-          rewrite ^/api/books(.*)$ /put$1 break;
-        }
-        if ($request_method = DELETE) {
-          rewrite ^/api/books(.*)$ /delete$1 break;
-        }
+        set $original_uri $uri;
+        rewrite ^ $target_destination last;
       }
 spec:
   rules:
-    - http:
-        paths:
-          - path: /get
-            pathType: Prefix
-            backend:
-              service:
-                name: get-service-service
-                port:
-                  number: 3030
-
-          - path: /post
-            pathType: Prefix
-            backend:
-              service:
-                name: post-service-service
-                port:
-                  number: 3030
-
-          - path: /put
-            pathType: Prefix
-            backend:
-              service:
-                name: put-service-service
-                port:
-                  number: 3030
-
-          - path: /delete
-            pathType: Prefix
-            backend:
-              service:
-                name: delete-service-service
-                port:
-                  number: 3030
+    http:
+      paths:
+      - path: /_read
+        pathType: Prefix
+        backend:
+          service:
+            name: get-service-service
+            port:
+              number: 3030
+      - path: /_write
+        pathType: Prefix
+        backend:
+          service:
+            name: post-service-service
+            port:
+              number: 3030
+      - path: /_write
+        pathType: Prefix
+        backend:
+          service:
+            name: put-service-service
+            port:
+              number: 3030
+      - path: /_write
+        pathType: Prefix
+        backend:
+          service:
+            name: delete-service-service
+            port:
+              number: 3030
 
           - path: /render
             pathType: Prefix
