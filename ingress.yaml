@@ -6,23 +6,24 @@ metadata:
     nginx.ingress.kubernetes.io/server-snippet: |
       location /api/books {
         if ($request_method = GET) {
-          proxy_pass http://get-service-service:3030;
+          proxy_pass http://get-service-service:3030$request_uri;
         }
         if ($request_method = POST) {
-          proxy_pass http://post-service-service:3030;
+          proxy_pass http://post-service-service:3030$request_uri;
         }
         if ($request_method = PUT) {
-          proxy_pass http://put-service-service:3030;
+          proxy_pass http://put-service-service:3030$request_uri;
         }
         if ($request_method = DELETE) {
-          proxy_pass http://delete-service-service:3030;
+          proxy_pass http://delete-service-service:3030$request_uri;
         }
+        proxy_set_header Host $host;
       }
 spec:
   rules:
     - http:
         paths:
-          - path: /render
+          - path: /
             pathType: Prefix
             backend:
               service:
