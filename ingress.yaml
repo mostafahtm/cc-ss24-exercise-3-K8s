@@ -21,45 +21,40 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: 74.178.90.59.nip.io
-      http:
-        paths:
-          - path: /get
-            pathType: Prefix
-            backend:
-              service:
-                name: get-service-service
-                port:
-                  number: 3030
-
-          - path: /post
-            pathType: Prefix
-            backend:
-              service:
-                name: post-service-service
-                port:
-                  number: 3030
-
-          - path: /put
-            pathType: Prefix
-            backend:
-              service:
-                name: put-service-service
-                port:
-                  number: 3030
-
-          - path: /delete
-            pathType: Prefix
-            backend:
-              service:
-                name: delete-service-service
-                port:
-                  number: 3030
-
-          - path: /render
-            pathType: Prefix
-            backend:
-              service:
-                name: render-service-service
-                port:
-                  number: 3030
+  - http:
+      paths:
+        - path: /get
+          pathType: Prefix
+          backend:
+            service:
+              name: get-service-service
+              port:
+                number: 3030
+        - path: /post
+          pathType: Prefix
+          backend:
+            service:
+              name: post-service-service
+              port:
+                number: 3030
+        - path: /put
+          pathType: Prefix
+          backend:
+            service:
+              name: put-service-service
+              port:
+                number: 3030
+        - path: /delete
+          pathType: Prefix
+          backend:
+            service:
+              name: delete-service-service
+              port:
+                number: 3030
+        - path: /render
+          pathType: Prefix
+          backend:
+            service:
+              name: render-service-service
+              port:
+                number: 3030
