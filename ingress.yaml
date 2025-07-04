@@ -21,7 +21,7 @@ metadata:
       }
 spec:
   rules:
-    - host: 74.178.90.59:80
+    - host: 74.178.90.59
       http:
         paths:
           - path: /get
