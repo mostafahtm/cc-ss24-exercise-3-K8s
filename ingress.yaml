@@ -50,11 +50,10 @@ spec:
             name: delete-service-service
             port:
               number: 3030
-
-          - path: /render
-            pathType: Prefix
-            backend:
-              service:
-                name: render-service-service
-                port:
-                  number: 3030
+      - path: /render
+        pathType: Prefix
+        backend:
+          service:
+            name: render-service-service
+            port:
+              number: 3030
