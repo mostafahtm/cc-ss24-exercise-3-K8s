@@ -4,25 +4,26 @@ metadata:
   name: app-method-routing
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      internal;
-      rewrite ^ $original_uri break;
     nginx.ingress.kubernetes.io/server-snippet: |
-      location /api {
+      location /api/books {
         if ($request_method = GET) {
-          set $target_destination '/_read';
+          rewrite ^/api/books(.*)$ /get$1 break;
         }
-        if ($request_method != GET) {
-          set $target_destination '/_write';
+        if ($request_method = POST) {
+          rewrite ^/api/books(.*)$ /post$1 break;
         }
-        set $original_uri $uri;
-        rewrite ^ $target_destination last;
+        if ($request_method = PUT) {
+          rewrite ^/api/books(.*)$ /put$1 break;
+        }
+        if ($request_method = DELETE) {
+          rewrite ^/api/books(.*)$ /delete$1 break;
+        }
       }
 spec:
   rules:
     - http:
         paths:
-          - path: /_read
+          - path: /get
             pathType: Prefix
             backend:
               service:
@@ -30,7 +31,7 @@ spec:
                 port:
                   number: 3030
 
-          - path: /_write-post
+          - path: /post
             pathType: Prefix
             backend:
               service:
@@ -38,7 +39,7 @@ spec:
                 port:
                   number: 3030
 
-          - path: /_write-put
+          - path: /put
             pathType: Prefix
             backend:
               service:
@@ -46,7 +47,7 @@ spec:
                 port:
                   number: 3030
 
-          - path: /_write-delete
+          - path: /delete
             pathType: Prefix
             backend:
               service:
