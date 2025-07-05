@@ -1,8 +1,6 @@
-## Exercise 4 on Cloud Computing
+## Exercise 4 on Cloud Computing - Kubernetes
 
 ### Summer Semester 2025
-
-### Kubernetes
 
 Dear students, 
 
