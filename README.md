@@ -4,7 +4,7 @@
 
 In this project, the BookStore microservices are deployed on a **Kubernetes cluster**, replacing Docker Compose with scalable and production-grade orchestration. Each service (GET, POST, PUT, DELETE, render) is containerized and deployed as a **separate pod**, managed via **Kubernetes Deployments and Services**. An **NGINX Ingress Controller**, installed via Helm, dynamically routes traffic based on HTTP methods.
 
-### Key Features:
+#### Key Features:
 - Full Kubernetes deployment of microservices using `kubectl`, YAML, and Helm  
 - Load balancing via NGINX Ingress with custom routing based on request method  
 - Environment-based MongoDB integration with dedicated Deployment  
